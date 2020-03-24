@@ -55,7 +55,7 @@ for epoch in range(30):
     err_train = []
     time_tr = time.time()
     model.train(True)
-    for input, _ in tr:
+    for input, _ in train:
         input = input.cuda()
         target = (input.data[:,0] * 255).long()
         loss = F.cross_entropy(model(input), target)
@@ -69,7 +69,7 @@ for epoch in range(30):
     err_test = []
     time_te = time.time()
     model.train(False)
-    for input, _ in te:
+    for input, _ in test:
         input = input.cuda()
         target = (input.data[:,0] * 255).long()
         loss = F.cross_entropy(model(input), target)
