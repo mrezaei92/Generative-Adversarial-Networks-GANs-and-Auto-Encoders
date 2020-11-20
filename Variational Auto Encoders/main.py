@@ -35,8 +35,8 @@ for epoch in range(10):  # loop over the dataset multiple times
             optimizer.zero_grad()
             output,mu,sigma,_=model(inputs)
             # forward + backward + optimize
-            #Reconstruction_loss = F.binary_cross_entropy(output, labels, reduction='sum') / bath_size
-            Reconstruction_loss=MSE_loss(output,labels)
+            Reconstruction_loss = F.binary_cross_entropy(output, labels, reduction='sum') / bath_size
+            #Reconstruction_loss=MSE_loss(output,labels)
             KL_divergence = 0.5 * torch.sum( torch.pow(mu, 2) + torch.pow(sigma, 2) - torch.log(1e-8 + torch.pow(sigma, 2)) - 1 ).sum() / bath_size
             loss = Reconstruction_loss+KL_divergence
 
